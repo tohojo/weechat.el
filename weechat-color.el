@@ -81,7 +81,7 @@ This will look very bland!"
              (astd `(seq ,attr (= 2 digit)))
              (ext  `(seq "@" (= 5 digit)))
              (aext `(seq "@" ,attr (= 5 digit))))
-        (rx--translate-form
+        (apply 'concat (car (rx--translate-form
          `(or (seq ""
                    (or ,std
                        ,ext
@@ -98,7 +98,7 @@ This will look very bland!"
                        ""))
               (seq "" ,attr)
               (seq "" ,attr)
-              ""))))
+              ""))))))
   (defvar weechat-formatting-regex
     (let* ((attr `(in "*!/_|"))   ;NOTE:  is not documented
            (std  `(= 2 digit))
